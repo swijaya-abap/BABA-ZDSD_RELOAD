@@ -1,0 +1,81 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZDSDO_RELOAD_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="DETAIL" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/><PropertyRef Name="PLANT"/></Key><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:sortable="false"/><Property Name="PLANT" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:sortable="false"/><Property Name="VEHICLE" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Vehicle" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DRIVER1" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Rep." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OBJ_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OBJ_TYP" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Document Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RELOAD_SEQUENCE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Reload Sequence"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="RELOAD_STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Reload Status"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CREUSER" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CREDATE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CRETIME" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CNGUSER" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CNGDATE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CNGTIME" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="SHIPMENT" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/></Key><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:updatable="false" sap:sortable="false"/></EntityType>
+			<EntityType Name="MATERIALIN" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/></Key><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:sortable="false"/><Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:sortable="false"/><Property Name="MAKTX" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="WERKS" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:sortable="false"/><Property Name="UOMB" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="UOMP" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="EANB" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="EAN/UPC" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EANP" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="EAN/UPC" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="WTB" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Weight/UoM"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="WTP" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="HEADER" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/></Key><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:sortable="false"/><Property Name="CONF" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PLANT" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VBELN" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Document"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="HEADITEMNAV" Relationship="ZDSDO_RELOAD_SRV.HEADITEMASS" FromRole="FromRole_HEADITEMASS"
+					ToRole="ToRole_HEADITEMASS"/></EntityType>
+			<EntityType Name="ITEM" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/></Key><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:sortable="false"/><Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="UOM" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="QTY" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:label="Order quantity"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EAN11" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="EAN/UPC" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CONF" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MAKTX" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PRINT" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/><PropertyRef Name="VBELN"/><PropertyRef Name="SEQ"/></Key><Property Name="MIMETYPE" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CONTENT" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:sortable="false"/><Property Name="VBELN" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Document" sap:sortable="false"/><Property Name="SEQ" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Reload Sequence" sap:sortable="false"/></EntityType>
+			<EntityType Name="GETDET" sap:content-version="1">
+				<Key><PropertyRef Name="SHIPMENTV"/></Key><Property Name="WT" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="UOM" sap:label="Weight/UoM"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CONF" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MAKTX" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SHIPMENTV" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document No."
+					sap:sortable="false"/><Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="UOM" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="QTY" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:unit="UOM"
+					sap:label="Order quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EAN11" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="EAN/UPC" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="HEADITEMASS" sap:content-version="1"><End Type="ZDSDO_RELOAD_SRV.HEADER" Multiplicity="1" Role="FromRole_HEADITEMASS"/><End Type="ZDSDO_RELOAD_SRV.ITEM" Multiplicity="*" Role="ToRole_HEADITEMASS"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_HEADITEMASS"><PropertyRef Name="SHIPMENTV"/></Principal>
+					<Dependent Role="ToRole_HEADITEMASS"><PropertyRef Name="SHIPMENTV"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZDSDO_RELOAD_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="DETAILSet" EntityType="ZDSDO_RELOAD_SRV.DETAIL" sap:searchable="true" sap:content-version="1"/><EntitySet Name="SHIPMENTSet" EntityType="ZDSDO_RELOAD_SRV.SHIPMENT" sap:searchable="true" sap:content-version="1"/><EntitySet Name="MATERIALINSet" EntityType="ZDSDO_RELOAD_SRV.MATERIALIN" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="HEADERSet" EntityType="ZDSDO_RELOAD_SRV.HEADER" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ITEMSet" EntityType="ZDSDO_RELOAD_SRV.ITEM" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PRINTSet" EntityType="ZDSDO_RELOAD_SRV.PRINT" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="GETDETSet" EntityType="ZDSDO_RELOAD_SRV.GETDET" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="HEADITEMASSSet" Association="ZDSDO_RELOAD_SRV.HEADITEMASS" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="HEADERSet" Role="FromRole_HEADITEMASS"/><End EntitySet="ITEMSet" Role="ToRole_HEADITEMASS"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://172.17.80.40:8000/sap/opu/odata/sap/ZDSDO_RELOAD_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="http://172.17.80.40:8000/sap/opu/odata/sap/ZDSDO_RELOAD_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,129 @@
+<mvc:View controllerName="com.baba.ZDSD_RELOAD.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core">
+	<semantic:FullscreenPage id="page" title="Reload Order">
+		<semantic:content>
+			<form:SimpleForm>
+				<Label text="Shipment" design="Bold" width="auto"/>
+				<ComboBox id="SHIP" showSecondaryValues="true" items="{/SHIPMENTSet}" required="true" selectionChange="onShipSelectionChange">
+					<core:ListItem key="{SHIPMENTV}" text="{SHIPMENTV}"/>
+				</ComboBox>
+				<Button xmlns="sap.m" text="Fetch" id="button0" press="onGet" width="auto"/>
+			</form:SimpleForm>
+			<Panel expandable="true" expanded="false" backgroundDesign="Solid" headerText="Shipment Details">
+				<form:SimpleForm>
+					<!--<HBox>-->
+					<Label text="Vehicle" design="Bold" width="auto"/>
+					<Input id="VEHICLE" value="{VEHICLE}" editable="false" textAlign="Left"/>
+					<Label text="Driver" design="Bold" width="auto"/>
+					<Input id="DRIVER1" editable="false" textAlign="Left"/>
+					<!--</HBox>-->
+					<Label text="Obj Id" design="Bold" width="auto" visible="false"/>
+					<Input id="OBJ_ID" value="{OBJ_ID}" editable="false" textAlign="Left" visible="false"/>
+					<Label text="OBJ TYP" design="Bold" width="auto" visible="false"/>
+					<Input id="OBJ_TYP" value="{OBJ_TYP}" editable="false" textAlign="Left" visible="false"/>
+					<Label text="Reload Seq" design="Bold" width="auto"/>
+					<Input id="RELOAD_SEQUENCE" value="{RELOAD_SEQUENCE}" editable="false" textAlign="Left"/>
+					<Label text="Reload Status" design="Bold" width="auto"/>
+					<Input id="RELOAD_STATUS" value="{RELOAD_STATUS}" editable="false" textAlign="Left"/>
+					<Label text="Branch" design="Bold" width="auto"/>
+					<Input id="PLANT" value="{PLANT}" editable="false" textAlign="Left"/>
+					<Label text="Created User/Date/Time" design="Bold" width="auto"/>
+					<Input id="CREUSER" value="{CREUSER}" editable="false" textAlign="Left"/>
+					<!--<Label text="CREDATE" design="Bold" width="50%"/>-->
+					<!--<Input id="CREDATE" editable="false" textAlign="Left"/>		 -->
+					<!--<Label text="CRETIME" design="Bold" width="50%"/>-->
+					<!--<Input id="CRETIME" editable="false" textAlign="Left"/>	-->
+					<Label text="Change User/Date/Time" design="Bold" width="auto"/>
+					<Input id="CNGUSER" value="{CNGUSER}" editable="false" textAlign="Left"/>
+				</form:SimpleForm>
+			</Panel>
+			<Table id="table" width="auto" class="sapUiResponsiveMargin" growing="false" growingScrollToLoad="false"
+				items="{ path: '/data', sorter: [ { path: 'UOM', descending: false , group: true } ], operationMode: 'Client' }" mode="MultiSelect"
+				alternateRowColors="true" updateFinished="onUpdateFinished" noDataText="No data fetched">
+				<columns>
+					<Column styleClass="cellBorderLeft" width="auto" vAlign="Middle"></Column>
+					<Column styleClass="cellBorderLeft" width="auto" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+						<Text text="Mat"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft" width="auto" popinDisplay="Inline">
+						<Text text="UOM" textAlign="Center" wrapping="false"/>
+					</Column>
+					<Column width="auto">
+						<Text text="Qty" textAlign="Right" wrapping="false"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft" width="auto" visible="false">
+						<Text text="EAN11" textAlign="Center" wrapping="false"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft" width="auto" visible="false">
+						<Text text="WT" textAlign="Center" wrapping="false"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectStatus id="CONFX" state="{ path: 'CONF' , formatter: '.formatter.colorval' }"
+								icon="{ path: 'CONF', formatter: '.formatter.colorval1' }"/>
+							<ObjectIdentifier text="{MATNR}-{MAKTX}"/>
+							<Text text="{UOM}"/>
+							<Input value="{QTY}" type="Number" textAlign="Right" change="onChk"/>
+							<Text text="{EAN11}"/>
+							<Text text="{WT}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table id="table1" width="auto" class="sapUiResponsiveMargin" growing="false" growingScrollToLoad="false" items="{/data}" visible="false">
+				<columns>
+					<Column styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" styleClass="cellBorderLeft cellBorderRight" width="auto"></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{MATNR}"/>
+							<Text text="{MAKTX}"/>
+							<Text text="{UOMB}"/>
+							<Text text="{UOMP}"/>
+							<Text text="{EANB}"/>
+							<Text text="{EANP}"/>
+							<Text text="{WTB}"/>
+							<Text text="{WTP}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<CheckBox selected="false" id="CONF" text="Final Confirmation"/>
+			<form:SimpleForm>
+				<HBox>
+					<Label text="Box:" design="Bold"/>
+					<Input id="BOX" editable="false" textAlign="Right"/>
+					<Label text=" PC:" design="Bold"/>
+					<Input id="PC" editable="false" textAlign="Right"/>
+				</HBox>
+				<HBox>
+					<Label text="WTG" design="Bold"/>
+					<Input id="WTG" editable="false" textAlign="Right"/>
+				</HBox>
+			</form:SimpleForm>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button17" press="onRest" icon="sap-icon://unlocked"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button4" press="onAdd" icon="sap-icon://add-product"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button5" press="onDel" icon="sap-icon://less"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button9" press="onRef" icon="sap-icon://refresh"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button13" press="onSave1" icon="sap-icon://save"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button12" press="onAddS" icon="sap-icon://add-product"
+				text="Add Material(by Description)"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button6" press="onPri" icon="sap-icon://print" text="Print"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button3" press="onPend" icon="sap-icon://activity-items" text="Pending Items"/>
+			<Button ariaLabelledBy="__xmlview0--label1" width="auto" id="button10" press="onAll" icon="sap-icon://decrease-line-height"
+				text="Show All items"/>
+		</semantic:customFooterContent>
+	</semantic:FullscreenPage>
+</mvc:View>
