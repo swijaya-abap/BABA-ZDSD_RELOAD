@@ -97,7 +97,7 @@ sap.ui.define([
 
 				var sData = this.getView().getModel("worklistView").getProperty("/GETDETSet");
 
-				var item = oModel1.oData.data;
+				// var item = oModel1.oData.data;
 				var oTable1 = that.getView().byId("table1");
 
 				var oModel1 = oTable1.getModel();
