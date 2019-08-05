@@ -68,6 +68,9 @@ sap.ui.define([
 			this.getView().byId("table").setModel(oModelt1);
 			this.getView().byId("table").getModel().setSizeLimit('10000');
 
+			var oShipModel = new JSONModel();
+			this.getView().byId("SHIP").setModel(oShipModel);
+
 			// 			var oModelt2 = new JSONModel();
 			// this.getView().byId("searchField").setModel(oModelt2);
 			// this.getView().byId("searchField").getModel().setSizeLimit('10000');
@@ -115,6 +118,87 @@ sap.ui.define([
 			}
 		},
 
+		_clrShipment: function () {
+			var oModel = this.byId("SHIP").getModel();
+			var data;
+			oModel.setData({
+				modelData: data
+			});
+			oModel.refresh(true);
+			this.byId("SHIP").setSelectedKey();
+		},
+
+		onChgRoute: function () {
+			this._clrShipment();
+			this.onShipSelectionChange();
+		},
+
+		onGetShipment: function () {
+			var that = this;
+			this._clrShipment();
+			var route = this.byId("ROUTE").getSelectedKey();
+			if (!route) {
+				sap.m.MessageToast.show("Please select Route to Fetch Shipment");
+			} else {
+				var PLFilters = [];
+				PLFilters.push(new sap.ui.model.Filter({
+					path: "ROUTE",
+					operator: sap.ui.model.FilterOperator.EQ,
+					value1: route
+				}));
+
+				var oBusy = new sap.m.BusyDialog();
+				that.onBusyS(oBusy);
+
+				var oModel = this.byId("SHIP").getModel();
+				var oItem = oModel.getProperty("/shipmentData");
+				var oModel1 = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZDSDO_RELOAD_SRV/", true);
+
+				oModel1.read("/SHIPMENTSet", {
+					filters: PLFilters,
+
+					success: function (oData, oResponse) {
+						var res = [];
+						res = oData.results;
+
+						if (res.length > 0) {
+							for (var iRowIndex = 0; iRowIndex < res.length; iRowIndex++) {
+								var itemRow = {
+									SHIPMENTV: res[iRowIndex].SHIPMENTV,
+								};
+
+								if (typeof oItem !== "undefined" && oItem.length > 0) {
+									oItem.push(itemRow);
+								} else {
+									oItem = [];
+									oItem.push(itemRow);
+								}
+							}
+
+							// // Set Model
+							oModel.setData({
+								shipmentData: oItem
+							});
+							oModel.refresh(true);
+
+							sap.m.MessageToast.show("Shipment fetched");
+						}else{
+							sap.m.MessageToast.show("Shipment not found");
+						}
+
+						//************************get values from backend based on filter Date*******************************************//
+						that.onBusyE(oBusy);
+					},
+					error: function (oResponse) {
+						that.onBusyE(oBusy);
+						var oMsg = JSON.parse(oResponse.responseText);
+						jQuery.sap.require("sap.m.MessageBox");
+						sap.m.MessageToast.show(oMsg.error.message.value);
+					}
+				});
+			}
+		},
+
 		/* =========================================================== */
 		/* event handlers                                              */
 		/* =========================================================== */
@@ -128,17 +212,17 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent the update finished event
 		 * @public
 		 */
-		onblank: function (oModel) {
+		onblank: function (iModel) {
 			//************************set blank values to table*******************************************//
 			var data;
-			var noData = oModel.getProperty("/data");
-			oModel.setData({
+			var noData = iModel.getProperty("/data");
+			iModel.setData({
 				modelData: noData
 			});
-			oModel.setData({
+			iModel.setData({
 				modelData: data
 			});
-			oModel.refresh(true);
+			iModel.refresh(true);
 		},
 
 		onShipSelectionChange: function (oEvent) {
