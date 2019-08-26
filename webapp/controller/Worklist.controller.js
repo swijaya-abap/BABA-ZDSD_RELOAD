@@ -33,6 +33,10 @@ sap.ui.define([
 			var oViewModel1 = new JSONModel();
 			this.setModel(oViewModel1, "worklistView1");
 			this.getOwnerComponent().getModel().setSizeLimit('9999');
+			
+			var oModel1 = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZDSDO_RELOAD_SRV/", true);
+			this.getView().byId("ROUTE").setModel(oModel1);
+			this.getView().byId("ROUTE").getModel().setSizeLimit('500');
 
 			// // Put down worklist table's original value for busy indicator delay,
 			// // so it can be restored later on. Busy handling on the table is
